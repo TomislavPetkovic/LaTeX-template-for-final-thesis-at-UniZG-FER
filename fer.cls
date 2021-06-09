@@ -143,6 +143,7 @@
 \RequirePackage[nottoc]{tocbibind}
 
 % Za automatsko povezivanje referenci, slika i tablica koristimo hyperref
+\PassOptionsToPackage{hyphens}{url}
 \RequirePackage[pdfpagelabels,unicode=true]{hyperref}
 
 % Predefiniramo sve funkcije za tekstualne elemenate naslovnice pa zatim
@@ -206,17 +207,17 @@
 % i uputama koriste Arial u zadanim veličinama. Kao zamjenski font koristimo Open Sans,
 % vidi https://tug.org/FontCatalogue/opensans/, koji je standardno uključen u TeXLive i
 % koji je dobra alternativa za Arial.
-\def\arial#1{\fontfamily{\opensansfamily}\fontshape{n}\fontsize{#1}{#1}\selectfont}
-\def\arialbold#1{\fontfamily{\opensansfamily}\fontseries{bx}\fontshape{n}\fontsize{#1}{#1}\selectfont}
+\def\arial#1#2{\fontfamily{\opensansfamily}\fontshape{n}\fontsize{#1}{#2}\selectfont}
+\def\arialbold#1#2{\fontfamily{\opensansfamily}\fontseries{bx}\fontshape{n}\fontsize{#1}{#2}\selectfont}
 
 % Radi lakšeg usklađivanja hrvatske i engleske naslovnice predefiniramo veličine slova.
-\def\arialsveuciliste{\arial{14}}
-\def\arialfakultet{\arialbold{14}}
-\def\arialrad{\arial{14}}
-\def\arialnaslov{\arialbold{20}}
-\def\arialautor{\arial{14}}
-\def\arialmentor{\arial{14}}
-\def\arialnadnevak{\arial{14}}
+\def\arialsveuciliste{\arial{14}{14}}
+\def\arialfakultet{\arialbold{14}{14}}
+\def\arialrad{\arial{14}{14}}
+\def\arialnaslov{\arialbold{20}{22}}
+\def\arialautor{\arial{14}{14}}
+\def\arialmentor{\arial{14}{14}}
+\def\arialnadnevak{\arial{14}{14}}
 
 % Pomoćna okolina za definiranje naslovnica koja zamjenjuje standardnu titlepage.
 % Potrebna je jer ako se rad piše na stranom jeziku onda moramo umetnuti dvostruku
@@ -497,10 +498,10 @@
 
 % Poglavlja su numerirana brojčano u tijelu rada te slovima u privitku.
 % Imena poglavlja koriste boldane fontove počevši od veličine 18pt.
-\def\arialpoglavlje{\arialbold{18}}
-\def\arialdio{\arialbold{16}}
-\def\arialpoddio{\arialbold{14}}
-\def\arialpodpoddio{\arialbold{12}}
+\def\arialpoglavlje{\arialbold{18}{18}}
+\def\arialdio{\arialbold{16}{16}}
+\def\arialpoddio{\arialbold{14}{14}}
+\def\arialpodpoddio{\arialbold{12}{12}}
 \def\@makechapterhead#1{%
   \vspace*{50\p@}%
   {\parindent \z@ \raggedright
@@ -559,9 +560,9 @@
   \if@seminar\relax\else\chapter*{\abstractname}\fi%
   \addcontentsline{toc}{chapter}{\abstractname}%
   \begin{center}%
-    {\arialbold{14} \@title}\par
+    {\arialbold{14}{14} \@title}\par
     \vskip 6pt plus 2pt minus 2pt%
-    {\arial{14} \@author}\par
+    {\arial{14}{14} \@author}\par
     \vskip 8pt plus 2pt minus 2pt%
     \if@seminar\textsl{\abstractname}\vskip 8pt plus 2pt minus 2pt\fi%
   \end{center}%
@@ -582,9 +583,9 @@
   \if@seminar\relax\else\chapter*{\abstractname}\fi%
   \addcontentsline{toc}{chapter}{\abstractname}%
   \begin{center}%
-    {\arialbold{14} \@naslov}\par
+    {\arialbold{14}{14} \@naslov}\par
     \vskip 6pt plus 2pt minus 2pt%
-    {\arial{14} \@autor}\par
+    {\arial{14}{14} \@autor}\par
     \vskip 8pt plus 2pt minus 2pt%
     \if@seminar\textsl{\abstractname}\vskip 8pt plus 2pt minus 2pt\fi%
   \end{center}%
