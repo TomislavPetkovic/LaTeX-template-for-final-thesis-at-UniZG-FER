@@ -22,9 +22,11 @@
 %%
 %% This is a numerical citation style.
 %%
-%% Changes made for UniZG-FER (2021-06-02, T. Petkovic):
+%% Changes made for UniZG-FER (2021-06-10, T. Petkovic):
 %% 1) Added support for DOIs. If DOI is defined then it is used instead of
 %%    URL. DOIs are displayed using Crossref's DOI display guidelines
+%% 2) Changed right hand justification of refrences to better handle
+%%    long URLs.
 %%
 %%*************************************************************************
 %% Legal Notice:
@@ -129,6 +131,7 @@ FUNCTION {default.is.use.alt.interword.spacing} { #1 }
 % "\providecommand\BIBentryALTinterwordstretchfactor{1.5}" in addition to
 % that via the IEEEtranBSTCTL entry type.
 FUNCTION {default.ALTinterwordstretchfactor} { "4" }
+FUNCTION {default.ALTrightskipstretchfactor} { "8" }
 
 
 % #0 turns off the "dashification" of repeated (i.e., identical to those
@@ -356,6 +359,7 @@ STRINGS { bibinfo
           s
           t
           ALTinterwordstretchfactor
+          ALTrightskipstretchfactor
           name.format.string
           name.latex.cmd
           name.url.prefix}
@@ -378,6 +382,7 @@ FUNCTION {initialize.controls}
   default.is.use.alt.interword.spacing 'is.use.alt.interword.spacing :=
   default.is.dash.repeated.names 'is.dash.repeated.names :=
   default.ALTinterwordstretchfactor 'ALTinterwordstretchfactor :=
+  default.ALTrightskipstretchfactor 'ALTrightskipstretchfactor :=  
   default.name.format.string 'name.format.string :=
   default.name.latex.cmd 'name.latex.cmd :=
   default.name.url.prefix 'name.url.prefix :=
@@ -1070,9 +1075,14 @@ FUNCTION {begin.bib}
   "\providecommand{\BIBentryALTinterwordstretchfactor}{"
   ALTinterwordstretchfactor * "}" *
   write$ newline$
+  "\providecommand{\BIBentryALTrightskipstretchfactor}{"
+  ALTrightskipstretchfactor * "}" *
+  write$ newline$  
   "\providecommand{\BIBentryALTinterwordspacing}{\spaceskip=\fontdimen2\font plus "
   write$ newline$
-  "\BIBentryALTinterwordstretchfactor\fontdimen3\font minus \fontdimen4\font\relax}"
+  "\BIBentryALTinterwordstretchfactor\fontdimen3\font minus \fontdimen4\font\rightskip=0pt plus "
+  write$ newline$
+  "\BIBentryALTrightskipstretchfactor\fontdimen3\font minus \fontdimen4\font\relax}"
   write$ newline$
   "\providecommand{\BIBforeignlanguage}[2]{{%"
   write$ newline$

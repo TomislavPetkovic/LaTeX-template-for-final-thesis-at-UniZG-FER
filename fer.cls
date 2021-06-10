@@ -124,6 +124,12 @@
 \bibliographystyle{fer_plainnat_EN}
 \fi
 \else
+\let\old@bibliography\bibliography
+\def\bibliography#1{%
+  \bgroup%
+  \rightskip=0pt plus 1fil\relax%
+  \old@bibliography{#1}
+  \egroup}%
 \if@hrvatski
 \bibliographystyle{fer_IEEEtran_HR}
 \else
