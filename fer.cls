@@ -629,6 +629,40 @@
   \fi
 }
 
+% PDF datoteka za učitavanje na FERWeb mora biti PDF/A.
+% Za to koristimo pdfx paket za koji moramo pripremiti i datoteku s podacima.
+% Podatke o naslovu i autoru preuzimamo iz standardnih \author i \title naredbi,
+% no iste se mogu redefinirati preko doljedefiniranih inačica s PDF-ovm u imenu.
+\def\PDFTitle#1{\gdef\@PDFTitle{#1}}
+\def\PDFAuthor#1{\gdef\@PDFAuthor{#1}}
+\def\PDFLanguage#1{\gdef\@PDFLanguage{#1}}
+\def\PDFSubject#1{\gdef\@PDFSubject{#1}}
+\def\PDFKeywords#1{\gdef\@PDFKeywords{#1}}
+
+\gdef\@PDFTitle{\@title}
+\gdef\@PDFAuthor{\@author}
+\gdef\@PDFLanguage{\if@hrvatski hr-HR\else en-US\fi}
+\gdef\@PDFSubject{}
+\gdef\@PDFKeywords{}
+  
+\if@upload%
+\usepackage{newfile}
+\usepackage{colorprofiles}
+\usepackage[a-2b,mathxmp,latxmp]{pdfx}
+\hypersetup{pdfstartview=}
+\def\writeoutPDFmetadata{
+  \newoutputstream{PDFmetadata}
+  \openoutputfile{\jobname.xmpdata}{PDFmetadata}
+  \addtostream{PDFmetadata}{\protect\Title{\@PDFTitle}}%
+  \addtostream{PDFmetadata}{\protect\Author{\@PDFAuthor}}%
+  \addtostream{PDFmetadata}{\protect\Language{\@PDFLanguage}}%
+  \addtostream{PDFmetadata}{\protect\Subject{\@PDFSubject}}%
+  \addtostream{PDFmetadata}{\protect\Keywords{\@PDFKeywords}}%
+  \closeoutputstream{PDFmetadata}
+}
+\AtEndDocument{\writeoutPDFmetadata}
+\fi
+
 % Ispiši u .log datoteku sve učitane pakete i to redom koji se učitavaju.
 \listfiles
 
