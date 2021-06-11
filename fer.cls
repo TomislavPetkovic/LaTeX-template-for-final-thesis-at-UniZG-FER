@@ -14,10 +14,10 @@
 % te predložak za diplomske i završne radove kojeg su pripremili studenti na početku
 % FER2 programa.
 %
-% 2020-06-02 Tomislav Petković (tomislav.petkovic.jr@fer.hr)
+% 2020-06-10 Tomislav Petković (tomislav.petkovic.jr@fer.hr)
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{fer}[2021/06/02 FER3]
+\ProvidesClass{fer}[2021/06/10 FER3]
 
 % Za definiranje što se događa pri pojedinoj opciji koristimo zastavice.
 % Standardni predložak je za diplomski rad na hrvatskom jeziku pa nam za
@@ -150,7 +150,7 @@
 
 % Za automatsko povezivanje referenci, slika i tablica koristimo hyperref
 \PassOptionsToPackage{hyphens}{url}
-\RequirePackage[pdfpagelabels,unicode=true]{hyperref}
+\RequirePackage[pdfpagelabels,unicode=true,pdfa,pdfstartview=]{hyperref}
 
 % Predefiniramo sve funkcije za tekstualne elemenate naslovnice pa zatim
 % postavljamo odabrane početne vrijednosti za HR i za EN naslovnicu.
@@ -649,7 +649,6 @@
 \usepackage{newfile}
 \usepackage{colorprofiles}
 \usepackage[a-2b,mathxmp,latxmp]{pdfx}
-\hypersetup{pdfstartview=}
 \def\writeoutPDFmetadata{
   \newoutputstream{PDFmetadata}
   \openoutputfile{\jobname.xmpdata}{PDFmetadata}
