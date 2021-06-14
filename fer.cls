@@ -504,10 +504,10 @@
 
 % Poglavlja su numerirana brojčano u tijelu rada te slovima u privitku.
 % Imena poglavlja koriste boldane fontove počevši od veličine 18pt.
-\def\arialpoglavlje{\arialbold{18}{18}}
-\def\arialdio{\arialbold{16}{16}}
-\def\arialpoddio{\arialbold{14}{14}}
-\def\arialpodpoddio{\arialbold{12}{12}}
+\def\arialpoglavlje{\arialbold{18}{19}}
+\def\arialdio{\arialbold{16}{17}}
+\def\arialpoddio{\arialbold{14}{15}}
+\def\arialpodpoddio{\arialbold{12}{13}}
 \def\@makechapterhead#1{%
   \vspace*{50\p@}%
   {\parindent \z@ \raggedright
@@ -566,9 +566,9 @@
   \if@seminar\relax\else\chapter*{\abstractname}\fi%
   \addcontentsline{toc}{chapter}{\abstractname}%
   \begin{center}%
-    {\arialbold{14}{14} \@title}\par
+    {\arialbold{14}{15} \@title}\par
     \vskip 6pt plus 2pt minus 2pt%
-    {\arial{14}{14} \@author}\par
+    {\arial{14}{15} \@author}\par
     \vskip 8pt plus 2pt minus 2pt%
     \if@seminar\textsl{\abstractname}\vskip 8pt plus 2pt minus 2pt\fi%
   \end{center}%
@@ -589,9 +589,9 @@
   \if@seminar\relax\else\chapter*{\abstractname}\fi%
   \addcontentsline{toc}{chapter}{\abstractname}%
   \begin{center}%
-    {\arialbold{14}{14} \@naslov}\par
+    {\arialbold{14}{15} \@naslov}\par
     \vskip 6pt plus 2pt minus 2pt%
-    {\arial{14}{14} \@autor}\par
+    {\arial{14}{15} \@autor}\par
     \vskip 8pt plus 2pt minus 2pt%
     \if@seminar\textsl{\abstractname}\vskip 8pt plus 2pt minus 2pt\fi%
   \end{center}%
