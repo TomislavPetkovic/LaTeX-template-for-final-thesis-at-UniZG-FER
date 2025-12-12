@@ -15,9 +15,11 @@
 % FER2 programa.
 %
 % 2020-06-10 Tomislav Petković (tomislav.petkovic.jr@fer.hr)
+%
+% Izmjene: 2025-12-12 Dodana naredba \frontmatter.
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{fer}[2021/06/10 FER3]
+\ProvidesClass{fer}[2025/12/12 FER3]
 
 % Za definiranje što se događa pri pojedinoj opciji koristimo zastavice.
 % Standardni predložak je za diplomski rad na hrvatskom jeziku pa nam za
@@ -328,25 +330,25 @@
   \centering
   \if@hrvatski
   \clearpage
-  \thispagestyle{empty}%
+  \if@frontmatter\thispagestyle{plain}\else\thispagestyle{empty}\fi%
   \vspace*{\fill}%
   Ovdje dolazi tekst zadatka \if@zavrsni zavr\v{s}nog rada\else diplomskog rada\fi\ na hrvatskom jeziku.\par%  
   \vspace*{\fill}%
   \else
   \clearpage
-  \thispagestyle{empty}%
+  \if@frontmatter\thispagestyle{plain}\else\thispagestyle{empty}\fi%
   \vspace*{\fill}%
   The \if@zavrsni bachelor\else master\fi\ thesis assignment text in English goes here.\par%
   \vspace*{\fill}%
   \newpage
-  \thispagestyle{empty}%
+  \if@frontmatter\thispagestyle{plain}\else\thispagestyle{empty}\fi%
   \vspace*{\fill}%
   Ovdje dolazi tekst zadatka \if@zavrsni zavr\v{s}nog rada\else diplomskog rada\fi\ na hrvatskom jeziku.\par%
   \vspace*{\fill}%
   \fi
   \egroup
   \else\closein15
-  \includepdf[pages=-]{#1}%
+  \if@frontmatter\includepdf[pages=-,pagecommand={\thispagestyle{plain}}]{#1}\else\includepdf[pages=-]{#1}\fi%
   \fi
   \fi
   \fi
@@ -358,7 +360,7 @@
 \newenvironment{zahvale}
 {%
   \clearpage
-  \thispagestyle{empty}%
+  \if@frontmatter\thispagestyle{plain}\else\thispagestyle{empty}\fi%
   \raggedleft
   \null\vskip 0pt plus 0.7fill\null\vskip 0pt\sl\null
 }%
@@ -475,16 +477,17 @@
   \def\@evenfoot{\thepage\hfil}}
 \pagestyle{plain}
 
-% Numeriranje stranica počinje od sadržaja. Da bi to postigli slično kao u klasi book
-% definiramo mainmatter i backmatter naredbe koje redefiniraju numeriranje poglavlja
-% i stranica. Numeriranje stranica započinje od mjesta u dokumentu na kojem zadamo
-% \mainmatter, a riječ Privitak/Appendix se dodaje imenima poglavlja nakon mjesta u
-% dokumentu na kojem zadamo \backmatter.
+% Numeriranje stranica uobičajeno počinje od sadržaja. Da bi to postigli slično kao
+% u klasi book definiramo mainmatter i backmatter naredbe koje redefiniraju numeriranje
+% poglavlja i stranica. Numeriranje stranica započinje od mjesta u dokumentu na kojem
+% zadamo \mainmatter, a riječ Privitak/Appendix se dodaje imenima poglavlja nakon
+% mjesta u dokumentu na kojem zadamo \backmatter.
 \newif\if@appendix\@appendixfalse
 \newcommand\mainmatter{%
   \pagestyle{plain}%
   \cleardoublepage
   \@appendixfalse
+  \@frontmatterfalse
   \pagenumbering{arabic}%
   \setcounter{page}{1}%
 }
@@ -500,6 +503,22 @@
   \setcounter{section}{0}%
   \gdef\@chapapp{\appendixname}%
   \gdef\thechapter{\@Alph\c@chapter}%
+}
+% Stare upute i predložak u Wordu za diplomski rad koriste rimske brojeve za numeriranje
+% početnih stranica rada gdje se nalaze tekst zadatka, zahvala i sadržaj, a tek od prve
+% stranice teksta nakon sadržaka započinje numeriranje arapskim brojevima od 1.
+% U ovom predlošku se preporuča korištenje \mainmatter nakon zahvale i prije sadržaja,
+% no alternativmo se može koristiti \frontmatter na početku rada za uključivanje rimskih
+% brojeva na stranice u početnom dijelu te \mainmatter nakon sadržaja za uobičajeno
+% numeriranje arapskim brojevima.
+\newif\if@frontmatter\@frontmatterfalse
+\newcommand\frontmatter{%
+  \pagestyle{plain}%
+  \cleardoublepage
+  \@frontmattertrue
+  \@appendixfalse
+  \pagenumbering{roman}%
+  \setcounter{page}{1}%
 }
 
 % Poglavlja su numerirana brojčano u tijelu rada te slovima u privitku.
