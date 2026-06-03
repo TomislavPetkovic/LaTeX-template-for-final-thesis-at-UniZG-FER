@@ -21,7 +21,7 @@
 % 2026-05-25 Dodane naredbe \izjavaoUI i \statementonAI za dodavanje naslova izjave o korištenju umjetne inteligencije.
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{fer}[2025/12/12 FER3]
+\ProvidesClass{fer}[2026/05/25 FER3]
 
 % Za definiranje što se događa pri pojedinoj opciji koristimo zastavice.
 % Standardni predložak je za diplomski rad na hrvatskom jeziku pa nam za
