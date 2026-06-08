@@ -27,14 +27,17 @@ Klasa koja se koristi je `fer.cls` s opcijom `diplomskirad`. Ogledni minimalni d
       ključne riječi na hrvatskom
     \end{kljucnerijeci}
     \begin{abstract}
-      abstract in English
+      sažetak na engleskom
     \end{abstract}
     \begin{keywords}
-      keywords in English
+      ključne riječi na engleskom
     \end{keywords}    
     \tableofcontents
     % TEKST RADA
     \bibliography{literatura}
+    \begin{izjavaoui}
+      izjava o korištenju umjetne inteligencije
+    \end{izjavaoui}
     \end{document}
 
 Osim klase potrebna je i pripadna .bst datoteka. Standardno se koristi `fer_IEEEtran_HR.bst` za brojčano citiranje na hrvatskom, no ako se želi koristiti citiranje (autor, godina) onda se mora zadati opcija `authoryear` te se koristi `fer_plainnat_HR.bst`.
@@ -76,14 +79,17 @@ The class to be used is `fer.cls` with the option `masterthesis`. An example min
       keywords in English
     \end{keywords}
     \begin{sazetak}
-      sažetak na hrvatskom
+      abstract in Croatian
     \end{sazetak}
     \begin{kljucnerijeci}
-      ključne riječi na hrvatskom
-    \end{kljucnerijeci}    
+      keywords in Croatian
+    \end{kljucnerijeci}
     \tableofcontents
     % THESIS BODY
     \bibliography{references}
+    \begin{statementonai}
+      statement on the use of artificial intelligence
+    \end{statementonai}
     \end{document}
 
 Besides the class you also need the approriate .bst file. The standard one is `fer_IEEEtran_EN.bst` for numerical quoting style, however, if (author,year) is to be used then give the option `authoryear` to the class and use `fer_plainnat_EN.bst`.

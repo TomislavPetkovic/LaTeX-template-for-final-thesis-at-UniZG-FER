@@ -19,9 +19,10 @@
 % Izmjene:
 % 2025-12-12 Dodana naredba \frontmatter.
 % 2026-05-25 Dodane naredbe \izjavaoUI i \statementonAI za dodavanje naslova izjave o korištenju umjetne inteligencije.
+% 2026-06-08 Dodane okoline izjavaoui i statementonai, te ispravljena greška u \statementonAI naredbi.
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{fer}[2026/05/25 FER3]
+\ProvidesClass{fer}[2026/06/08 FER3]
 
 % Za definiranje što se događa pri pojedinoj opciji koristimo zastavice.
 % Standardni predložak je za diplomski rad na hrvatskom jeziku pa nam za
@@ -638,13 +639,27 @@
   \addcontentsline{toc}{chapter}{\@uiizjava}%
 }
 
+\newenvironment{izjavaoui}[1][]{%
+  \otherlanguage{croatian}%
+  \def\@tmparg{#1}%
+  \ifx\@tmparg\@uiizjava\izjavaoUI{}\else\izjavaoUI{#1}\fi%
+}
+{\endotherlanguage}
+
 \def\aistatement#1{\gdef\@aistatement{#1}}
 \aistatement{Statement on the Use of Artificial Intelligence}
 \newcommand{\statementonAI}[1]{%
-  \ifstrempty{#1}{}{\statementonAI{#1}}%
+  \ifstrempty{#1}{}{\aistatement{#1}}%
   \chapter*{\@aistatement}%
   \addcontentsline{toc}{chapter}{\@aistatement}%
 }
+
+\newenvironment{statementonai}[1][]{%
+  \otherlanguage{english}%
+  \def\@tmparg{#1}%
+  \ifx\@tmparg\@aistatement\statementonAI{}\else\statementonAI{#1}\fi%
+}
+{\endotherlanguage}
 
 % U sadržaju je ime poglavlja povezano točkicama s brojem poglavlja.
 \renewcommand*\l@chapter[2]{%
