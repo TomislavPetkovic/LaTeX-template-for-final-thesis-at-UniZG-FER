@@ -641,8 +641,7 @@
 
 \newenvironment{izjavaoui}[1][]{%
   \otherlanguage{croatian}%
-  \def\@tmparg{#1}%
-  \ifx\@tmparg\@uiizjava\izjavaoUI{}\else\izjavaoUI{#1}\fi%
+  \izjavaoUI{#1}%
 }
 {\endotherlanguage}
 
@@ -656,8 +655,7 @@
 
 \newenvironment{statementonai}[1][]{%
   \otherlanguage{english}%
-  \def\@tmparg{#1}%
-  \ifx\@tmparg\@aistatement\statementonAI{}\else\statementonAI{#1}\fi%
+  \statementonAI{#1}%
 }
 {\endotherlanguage}
 
